@@ -1,11 +1,16 @@
 
 <div class="container">
-    <button (click)="testDeleteAllSessions()">Delete All Sessions</button>
-    <button (click)="testCreateSession()">Create Session</button>
+
     @if (loading()) {
-        <p>Loading...</p>
+        <p>Loading...</p> 
     } @else {
-        <p>{{ message() }}</p>
+
+        @if (userName()) {
+            <app-voting-session-component></app-voting-session-component>
+        } @else {
+            <app-login-form-component></app-login-form-component>
+        }
+        
     }
 </div>
 <router-outlet />
