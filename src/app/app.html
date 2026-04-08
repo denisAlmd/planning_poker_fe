@@ -1,4 +1,11 @@
 
-<button (click)="testDeleteAllSessions()">Delete All Sessions</button>
-
+<div class="container">
+    <button (click)="testDeleteAllSessions()">Delete All Sessions</button>
+    <button (click)="testCreateSession()">Create Session</button>
+    @if (loading()) {
+        <p>Loading...</p>
+    } @else {
+        <p>{{ message() }}</p>
+    }
+</div>
 <router-outlet />

@@ -14,13 +14,21 @@ export class App {
 
   }
 
+  message = signal('');
+  loading = signal(false);
+
   testCreateSession(): void {
-    this.session.createSession('Test Host').subscribe({
+    this.loading.set(true);
+    this.session.createSession('Denis').subscribe({
       next: (response) => {
+        this.message.set(`Session created with ID: ${response.id} for host: ${response.host_name}`);
         console.log('Session created:', response);
+        this.loading.set(false);
       },
       error: (error) => {
+        this.message.set(`Error creating session: ${error?.message || error}`);
         console.error('Error creating session:', error);
+        this.loading.set(false);
       }
     });
   }

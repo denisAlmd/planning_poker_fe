@@ -21,11 +21,11 @@ export class Session {
   constructor(private http: HttpClient) {}
 
   createSession(host_name: string): Observable<CreateSessionResponse> {
-    const body: { host_name: string } = { host_name };
-    return this.http.post<CreateSessionResponse>(`${environment.apiUrl}sessoes`, body);
+    const body: { host_nome: string } = { host_nome: host_name };
+    return this.http.post<CreateSessionResponse>(`${environment.apiUrl}sessoes/`, body);
   }
 
   deleteAllSessions(): Observable<DeleteAllSessionsResponse> {
-    return this.http.delete<DeleteAllSessionsResponse>(`${environment.apiUrl}sessoes`);
+    return this.http.delete<DeleteAllSessionsResponse>(`${environment.apiUrl}sessoes/all`);
   }
 }
