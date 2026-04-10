@@ -1,12 +1,56 @@
-<div class="container">
-    <header class="session-header">
-        <div></div>
+<div class="page">
+  <header class="topbar">
+    <div class="brand">
+      <button class="brand-icon" type="button" aria-label="Planning Poker">
+        🃏
+      </button>
+      <!--<span class="brand-title">Planning Poker</span>-->
+    </div>
 
-        <h1 class="session-title">Voting Session</h1>
+    <details class="user-menu">
+      <summary>
+        <span class="user-name">{{ userName() }}</span>
+        <span class="chevron">▾</span>
+      </summary>
 
-        <div class="user-area">
-            <p>Olá, {{ userName() }}! Seu ID de usuário é {{ userId() }}.</p>
-            <button class="exit-button" (click)="sair()">Sair</button>
+      <div class="menu-panel">
+        <button type="button" class="menu-item danger" (click)="onLogout()">
+          Sair
+        </button>
+      </div>
+    </details>
+  </header>
+
+  <main class="content">
+    <h1>Escolha como continuar</h1>
+    <p class="subtitle">Crie uma nova sessão ou entre com um código.</p>
+
+    <section class="actions-grid">
+      <article class="card">
+        <h2>Criar sessão</h2>
+        <p>Abra uma nova sala para seu time começar a votar.</p>
+        <button type="button" class="btn-primary" (click)="onCreateSession()">
+          Criar sessão
+        </button>
+      </article>
+
+      <article class="card">
+        <h2>Entrar com código</h2>
+        <p>Se você já recebeu um código, use aqui.</p>
+
+        <div class="join-row">
+          <input
+            type="text"
+            placeholder="Ex: A1B2C3"
+            [(ngModel)]="sessionCode"
+            name="sessionCode"
+            maxlength="12"
+          />
+          <button type="button" class="btn-secondary" (click)="onJoinSession()">
+            Entrar
+          </button>
         </div>
-    </header>
+      </article>
+    </section>
+  </main>
 </div>

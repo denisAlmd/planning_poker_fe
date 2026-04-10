@@ -46,6 +46,13 @@ export class Session {
     }
   }
 
+  sair(): void {
+    this.setUserName('');
+    this.setUserId(null);
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+  }
+
   userName = signal<string>('');
   userId = signal<number | null>(null);
   loading = signal<boolean>(false);

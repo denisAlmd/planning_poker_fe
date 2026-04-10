@@ -7,6 +7,20 @@
   padding: 0;
 }
 
+/* Tema */
+:root {
+  --color-bg: #0F172A;
+  --color-surface: #1E293B;
+  --color-surface-2: #334155;
+  --color-primary: #2563EB;
+  --color-secondary: #7C3AED;
+  --color-accent: #F59E0B;
+  --color-success: #22C55E;
+  --color-text: #F8FAFC;
+  --color-text-muted: #94A3B8;
+  --color-border: #334155;
+}
+
 /* Base do documento */
 html,
 body {
@@ -25,7 +39,8 @@ body {
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  background-color:#64c27b;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 /* Elementos de mídia */
@@ -47,6 +62,7 @@ select {
   border: none;
   outline: none;
   background: none;
+  color: inherit;
 }
 
 /* Botões */

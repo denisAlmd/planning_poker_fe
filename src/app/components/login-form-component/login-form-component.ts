@@ -11,16 +11,33 @@ import { Session } from '../../services/session';
 export class LoginFormComponent {
 
   userName = signal('');
+  message = signal<string>('');
 
   constructor(private session: Session) {
     
   }
 
+onChangeUserName(value: string): void {
+
+  const regex = /[^a-zA-Z_]/g;
+
+  if (regex.test(value)) {
+    this.message.set('Only letters and underscores are allowed in the username.');
+    return;
+  }
+
+  this.message.set('');
+  this.userName.set(value);
+}
+
   onSubmit(): void {
-    if (this.userName()) {
-      this.session.setUserName(this.userName());
-      this.session.setUserId(1);
+
+    if (!this.userName()) {
+      this.message.set('Please enter a username.');
+      return;
     }
+
+    this.session.setUserName(this.userName().trim());    
   }
 
 }

@@ -1,7 +1,23 @@
 <div class="container">
-    <form class="login-form">
-        <label for="username">Nome:</label>
-        <input id="username" type="text" [(ngModel)]="userName" name="username" required>
-        <button type="submit" (click)="onSubmit()">Login</button>
-    </form>
+  <form class="login-form" (ngSubmit)="onSubmit()">
+    <h1>Planning Poker</h1>
+
+    <div class="form-group">
+      <input
+        id="username"
+        type="text"
+        [ngModel]="userName()"
+        (ngModelChange)="onChangeUserName($event)"
+        name="username"
+        placeholder="Digite seu nome"
+        required
+      >
+    </div>
+
+    <button type="submit">Entrar</button>
+
+    @if (message()) {
+      <div class="error-message">{{ message() }}</div>
+    }
+  </form>
 </div>

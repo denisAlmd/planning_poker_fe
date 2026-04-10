@@ -1,28 +1,45 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Session } from '../../services/session';
 
 @Component({
   selector: 'app-voting-session-component',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './voting-session-component.html',
   styleUrl: './voting-session-component.css',
 })
 export class VotingSessionComponent {
+  
+  sessionCode = '';
+  name = '';
+  id: number | null = null;
 
   constructor(public session: Session) {}
 
-  get userName() {
-    return this.session.userName;
+  userName(): string {
+    this.name = this.session.userName();
+    return this.name;
   }
 
-  get userId() {
-    return this.session.userId;
+  userId(): number | null {
+    this.id = this.session.userId();
+    return this.id;
   }
 
   sair(): void {
-    this.session.setUserName('');
-    this.session.userId.set(null);
+    this.session.sair();
   }
 
+  onLogout(): void {
+    // TODO: implementar logout
+    this.sair();
+  }
 
+  onCreateSession(): void {
+    console.log(this.userName());
+  }
+
+  onJoinSession(): void {
+    // TODO: implementar entrada em sessão
+  }
 }
